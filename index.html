@@ -28,7 +28,7 @@
     <script>
         let horas = 0, minutos = 0, segundos = 0;
         let intervalo;
-        let cronometroEnMarcha = false;
+        let cronometroEmMarcha = false;
 
         const tiempoDisplay = document.getElementById("tempo");
         const startBtn = document.getElementById("iniciarBtn");
@@ -49,7 +49,7 @@
                     }
                     tiempoDisplay.textContent = `${formatTime(horas)}:${formatTime(minutos)}:${formatTime(segundos)}`;
                 }, 1000);
-                cronometroEnMarcha = true;
+                cronometroEmMarcha = true;
             }
         });
 
