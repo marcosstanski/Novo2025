@@ -3,31 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Olá Mundo</title>
-
-
+    <title>Cronómetro</title>
     <style>
-  body{
-    background-color: rgb(86, 181, 149);
-  }
-
-  text-position{
-    text-align: center;
-  }
+        #cronometro {
+            font-size: 30px;
+            margin: 20px;
+        }
     </style>
 </head>
 <body>
-    <section class="conteudo principal">
-        <h2 class="titulo principal">Meus Objetivos do ano <span>_</span></h2>
-        <div class="botões">
-            <button class="botão ativo">Cursos na Alura</button>
-            <button class="botao">Criar projetos em JavaScript</button>
-            <button class="botao">Criar um portfolio</button>
-            <button class="botao">Atualizar meu Curriculo</button>
-        </div>
-        <div class="abas texto">
+    <div id="cronometro">
+        <p>Tiempo: <span id="tempo">00:00:00</span></p>
+        <button id="startBtn">Iniciar</button>
+        <button id="stopBtn">Detener</button>
+        <button id="resetBtn">Reiniciar</button>
+    </div>
 
-        </div>
-    </section>
+    <script>
+        let horas = 0, minutos = 0, segundos = 0;
+        let intervalo;
+        let cronometroEnMarcha = false;
+
+        const tiempoDisplay = document.getElementById("tiempo");
+        const startBtn = document.getElementById("startBtn");
+        const stopBtn = document.getElementById("stopBtn");
+        const resetBtn = document.getElementById("resetBtn");
+
+        startBtn.addEventListener("click", () => {
+            if (!cronometroEnMarcha) {
+                intervalo = setInterval(() => {
+                    segundos++;
+                    if (segundos == 60) {
+                        segundos = 0;
+                        minutos++;
+                    }
+                    if (minutos == 60) {
+                        minutos = 0;
+                        horas++;
+                    }
+                    tiempoDisplay.textContent = `${formatTime(horas)}:${formatTime(minutos)}:${formatTime(segundos)}`;
+                }, 1000);
+                cronometroEnMarcha = true;
+            }
+        });
+
+        stopBtn.addEventListener("click", () => {
+            clearInterval(intervalo);
+            cronometroEnMarcha = false;
+        });
+
+        resetBtn.addEventListener("click", () => {
+            clearInterval(intervalo);
+            cronometroEnMarcha = false;
+            horas = 0;
+            minutos = 0;
+            segundos = 0;
+            tiempoDisplay.textContent = "00:00:00";
+        });
+
+        function formatTime(time) {
+            return time < 10 ? '0' + time : time;
+        }
+    </script>
 </body>
 </html>
