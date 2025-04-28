@@ -36,7 +36,7 @@
         const resetBtn = document.getElementById("resetBtn");
 
         startBtn.addEventListener("click", () => {
-            if (!cronometroEnMarcha) {
+            if (!cronometroEmMarcha) {
                 intervalo = setInterval(() => {
                     segundos++;
                     if (segundos == 60) {
@@ -55,12 +55,12 @@
 
         stopBtn.addEventListener("click", () => {
             clearInterval(intervalo);
-            cronometroEnMarcha = false;
+            cronometroEmMarcha = false;
         });
 
         resetBtn.addEventListener("click", () => {
             clearInterval(intervalo);
-            cronometroEnMarcha = false;
+            cronometroEmMarcha = false;
             horas = 0;
             minutos = 0;
             segundos = 0;
